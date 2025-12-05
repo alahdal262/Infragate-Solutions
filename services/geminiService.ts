@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
+// Initialize using the specific object format required by version 1.0+
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const SYSTEM_INSTRUCTION = `
