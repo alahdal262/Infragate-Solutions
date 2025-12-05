@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../components/Button';
 import { PageView } from '../types';
 import { Shield, Server, Cpu, Layers, ArrowRight, CheckCircle, Lock, Globe, Database, Activity, Code2, Scale } from 'lucide-react';
+import { Logo } from '../components/Logo';
 
 interface HomeProps {
   onNavigate: (page: PageView) => void;
@@ -12,8 +13,8 @@ export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
     <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative pt-24 pb-40 flex items-center justify-center overflow-hidden min-h-[90vh]">
-        {/* Abstract Background - Now reduced opacity to let DigitalBackground show */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Abstract Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
           <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-brand-600/5 rounded-full blur-[120px] animate-pulse"></div>
           <div className="absolute bottom-[0%] left-[-10%] w-[800px] h-[800px] bg-indigo-600/5 rounded-full blur-[120px]"></div>
           
