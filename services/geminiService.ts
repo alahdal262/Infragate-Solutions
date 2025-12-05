@@ -33,7 +33,7 @@ INSTRUCTIONS:
 - Keep responses concise (under 100 words) unless asked for a detailed technical explanation.
 `;
 
-export const sendMessageToGemini = async (history: { role: string; parts: [{ text: string }] }[], message: string): Promise<string> => {
+export const sendMessageToGemini = async (history: { role: string; parts: { text: string }[] }[], message: string): Promise<string> => {
   if (!apiKey) {
     return "I am currently offline (API Key missing). Please contact the administration.";
   }

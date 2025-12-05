@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { PageView } from '../types';
-import { Menu, X, Globe, ChevronRight, ShieldCheck, Lock } from 'lucide-react';
+import { Menu, X, ChevronRight, ShieldCheck, Lock } from 'lucide-react';
+import { Logo } from './Logo';
+import { DigitalBackground } from './DigitalBackground';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,7 +21,12 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-200 font-sans selection:bg-brand-500/30">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-200 font-sans selection:bg-brand-500/30 relative">
+      <DigitalBackground />
+      
+      {/* Scanline Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-[1] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,6px_100%]"></div>
+      
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50 supports-[backdrop-filter]:bg-slate-950/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,13 +36,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               className="flex items-center cursor-pointer group"
               onClick={() => onNavigate(PageView.HOME)}
             >
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-brand-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:shadow-brand-500/40 transition-all duration-300 z-10 relative border border-slate-700/50">
-                  <Globe className="text-white w-7 h-7" />
-                </div>
-                <div className="absolute inset-0 bg-brand-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+              <div className="relative mr-4">
+                 <Logo className="w-12 h-12 drop-shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]" />
               </div>
-              <div className="ml-4 flex flex-col justify-center">
+              <div className="flex flex-col justify-center">
                 <span className="block text-2xl font-bold tracking-tight text-white leading-none">Infragate</span>
                 <span className="block text-xs text-brand-400 tracking-[0.2em] uppercase font-semibold mt-1.5">Solutions Ltd</span>
               </div>
@@ -105,13 +109,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
         )}
       </nav>
 
-      {/* Main Content */}
-      <main className="flex-grow pt-24">
+      {/* Main Content - adjusted z-index to sit above background */}
+      <main className="flex-grow pt-24 relative z-10">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-900 relative overflow-hidden">
+      <footer className="bg-slate-950/90 backdrop-blur-sm border-t border-slate-900 relative overflow-hidden z-10">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-900 to-transparent"></div>
         
@@ -119,9 +123,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-2">
                <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center mr-3">
-                  <Globe className="text-white w-6 h-6" />
-                </div>
+                <Logo className="w-10 h-10 mr-4" />
                 <div>
                   <span className="text-2xl font-bold text-white block">Infragate Solutions</span>
                   <span className="text-[10px] text-brand-400 tracking-widest uppercase font-bold">Systems & Architecture</span>
@@ -157,7 +159,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
                 </li>
                 <li className="text-slate-400 text-sm">
                   <strong className="block text-slate-300 mb-1">Enquiries</strong>
-                  contact@infragatesolutions.com
+                  info@infragatesolutions.com
                 </li>
                 <li>
                   <button onClick={() => onNavigate(PageView.CONTACT)} className="mt-4 bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium inline-flex items-center transition-all shadow-lg shadow-brand-500/20">
