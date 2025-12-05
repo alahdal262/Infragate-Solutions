@@ -96,7 +96,7 @@ export const ContactPage: React.FC = () => {
                 <div>
                   <h3 className="text-white font-bold text-lg mb-1">Email Us</h3>
                   <p className="text-slate-400 text-base">info@infragatesolutions.com</p>
-                  <p className="text-slate-400 text-base">projects@infragatesolutions.com</p>
+                  <p className="text-slate-500 text-sm mt-1">For all project enquiries and RFPs</p>
                 </div>
               </div>
 
@@ -105,9 +105,9 @@ export const ContactPage: React.FC = () => {
                   <Phone className="text-brand-500 w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg mb-1">Business Hours</h3>
-                  <p className="text-slate-400 text-base">Monday - Friday</p>
-                  <p className="text-slate-400 text-base">09:00 - 17:00 (GMT/BST)</p>
+                  <h3 className="text-white font-bold text-lg mb-1">Direct Line</h3>
+                  <p className="text-slate-400 text-base">+44 7733 369839</p>
+                  <p className="text-slate-500 text-sm mt-1">Mon - Fri, 09:00 - 17:00 (UK Time)</p>
                 </div>
               </div>
             </div>
@@ -117,7 +117,7 @@ export const ContactPage: React.FC = () => {
               <p className="text-slate-300 text-sm leading-relaxed mb-4">
                 We are always looking for exceptional talent in React, Node, Python, and DevOps. If you are passionate about high-performance engineering, get in touch.
               </p>
-              <a href="#" className="text-brand-400 hover:text-brand-300 font-semibold text-sm">View Open Positions &rarr;</a>
+              <a href="mailto:info@infragatesolutions.com" className="text-brand-400 hover:text-brand-300 font-semibold text-sm">Send us your CV &rarr;</a>
             </div>
           </div>
 
@@ -134,9 +134,9 @@ export const ContactPage: React.FC = () => {
                   Your project details have been encrypted and stored in our database. Our administration team has been notified via email.
                 </p>
                 <div className="w-full bg-slate-950 p-4 rounded-xl border border-slate-800 text-left text-xs font-mono space-y-2 mb-8 text-slate-500">
-                   <div className="flex items-center gap-2"><Database size={12} className="text-emerald-500"/> Data written to shard-uk-01</div>
-                   <div className="flex items-center gap-2"><Mail size={12} className="text-sky-500"/> SMTP Relay dispatched to admin@infragatesolutions.com</div>
-                   <div className="flex items-center gap-2"><Smartphone size={12} className="text-purple-500"/> SMS Alert sent to Duty Manager</div>
+                   <div className="flex items-center gap-2"><Database size={12} className="text-emerald-500"/> Data written to secure_ledger_01</div>
+                   <div className="flex items-center gap-2"><Mail size={12} className="text-sky-500"/> Alert sent to info@infragatesolutions.com</div>
+                   <div className="flex items-center gap-2"><Smartphone size={12} className="text-purple-500"/> SMS Alert sent to +44 7733369839</div>
                 </div>
                 <button onClick={() => setStatus('idle')} className="text-brand-400 hover:text-brand-300 font-medium border-b border-brand-400/20 hover:border-brand-400 transition-all">Submit another enquiry</button>
               </div>
