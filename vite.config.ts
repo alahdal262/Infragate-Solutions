@@ -7,11 +7,16 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     define: {
-      // This ensures process.env is available in the browser for your existing code
-      'process.env': env
+      // Robustly define process.env for browser compatibility
+      'process.env': {
+        API_KEY: JSON.stringify(env.API_KEY || ''),
+        SUPABASE_URL: JSON.stringify(env.SUPABASE_URL || ''),
+        SUPABASE_ANON_KEY: JSON.stringify(env.SUPABASE_ANON_KEY || ''),
+      }
     },
     build: {
       outDir: 'dist',
+      sourcemap: false,
     }
   };
 });

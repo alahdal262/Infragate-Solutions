@@ -12,27 +12,32 @@ export const Logo: React.FC<LogoProps> = ({ className = "w-10 h-10" }) => {
           <stop offset="0%" stopColor="#38bdf8" />
           <stop offset="100%" stopColor="#4f46e5" />
         </linearGradient>
-        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
+        <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
       </defs>
       
-      {/* Outer Infrastructure Frame */}
+      {/* Minimalist Gateway Concept */}
+      {/* Vertical Pillars representing Structure */}
+      <rect x="28" y="20" width="10" height="60" rx="3" fill="url(#logoGradient)" />
+      <rect x="62" y="20" width="10" height="60" rx="3" fill="url(#logoGradient)" />
+      
+      {/* Central Intelligence Node */}
+      <circle cx="50" cy="50" r="6" fill="#e0f2fe" filter="url(#softGlow)" />
+      
+      {/* Digital Connection Beams */}
+      <path d="M38 50 L44 50" stroke="#38bdf8" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M56 50 L62 50" stroke="#4f46e5" strokeWidth="2.5" strokeLinecap="round" />
+      
+      {/* Subtle Arch/Overhead Data Flow */}
       <path 
-        d="M20 20 L20 80 L80 80 L80 20 L60 20 L60 30 L70 30 L70 70 L30 70 L30 30 L40 30 L40 20 Z" 
-        fill="url(#logoGradient)" 
-        opacity="0.9"
+        d="M33 20 C 33 10, 67 10, 67 20" 
+        stroke="url(#logoGradient)" 
+        strokeWidth="2" 
+        strokeOpacity="0.5"
+        fill="none"
       />
-      
-      {/* Inner Digital Core/Circuit */}
-      <circle cx="50" cy="50" r="8" fill="#e0f2fe" filter="url(#glow)" />
-      
-      {/* Connecting Lines */}
-      <path d="M50 20 L50 35" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" />
-      <path d="M50 65 L50 80" stroke="#4f46e5" strokeWidth="4" strokeLinecap="round" />
-      <path d="M20 50 L35 50" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" />
-      <path d="M65 50 L80 50" stroke="#4f46e5" strokeWidth="4" strokeLinecap="round" />
     </svg>
   );
 };

@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const SYSTEM_INSTRUCTION = `
 You are the official Senior AI Consultant for "Infragate Solutions Ltd", a premier British software engineering firm.
@@ -34,7 +33,7 @@ INSTRUCTIONS:
 `;
 
 export const sendMessageToGemini = async (history: { role: string; parts: { text: string }[] }[], message: string): Promise<string> => {
-  if (!apiKey) {
+  if (!process.env.API_KEY) {
     return "I am currently offline (API Key missing). Please contact the administration.";
   }
 
