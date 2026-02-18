@@ -10,7 +10,7 @@ export const ContactPage: React.FC = () => {
     email: '', 
     phone: '',
     company: '',
-    serviceInterest: 'Enterprise Architecture',
+    serviceInterest: 'SDOS Pilot Program',
     message: '' 
   });
   
@@ -40,20 +40,24 @@ export const ContactPage: React.FC = () => {
 
   const faqs = [
     {
-      q: "Do you work with international clients?",
-      a: "Yes. While we are UK-based and registered, we serve clients globally, particularly in the Middle East and Europe, ensuring compliance with local data regulations."
+      q: "What countries can deploy SDOS?",
+      a: "SDOS is designed for any nation seeking digital transformation. It's particularly effective for developing countries looking to leapfrog traditional e-government approaches. We support deployment in any language and regulatory framework."
     },
     {
-      q: "What is your typical project timeline?",
-      a: "Timeline depends on complexity. A typical government portal MVP might take 3-6 months, while complex enterprise integration can be 6-12 months. We work in 2-week agile sprints."
+      q: "How long does a pilot deployment take?",
+      a: "A typical pilot for a single ministry can be deployed in 2-4 weeks. Full national rollout timelines depend on scope, but our cloning technology means successful pilots can scale to other ministries in days, not years."
     },
     {
-      q: "Are you ISO 27001 certified?",
-      a: "Our internal workflows are aligned with ISO 27001 and Cyber Essentials Plus standards. We can assist your project in achieving these certifications."
+      q: "Do we own the source code?",
+      a: "Yes. SDOS emphasizes digital sovereignty. Your nation receives full source code ownership and can host on local servers. There is no vendor lock-in—you control your digital future."
     },
     {
-      q: "Do you provide post-launch support?",
-      a: "Absolutely. We offer 24/7 Service Level Agreements (SLAs) for critical infrastructure, including security patching, uptime monitoring, and feature updates."
+      q: "What about security and compliance?",
+      a: "SDOS is built on modern banking-grade security standards: WebAuthn authentication, multi-signature approvals, zero-trust architecture, and comprehensive audit trails. We align with ISO 27001, GDPR, and can adapt to local regulations."
+    },
+    {
+      q: "Can SDOS integrate with existing systems?",
+      a: "Absolutely. SDOS can operate in hybrid mode, working alongside existing systems while gradually migrating services. We provide APIs for integration with legacy databases and third-party services."
     }
   ];
 
@@ -66,9 +70,12 @@ export const ContactPage: React.FC = () => {
         
         {/* Intro */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Get in Touch</h1>
-          <p className="text-xl text-slate-400">
-            Discuss your requirements with our London-based engineering team.
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Request SDOS Demo</h1>
+          <p className="text-xl text-slate-400 mb-4">
+            Schedule a pilot program consultation for your nation or ministry
+          </p>
+          <p dir="rtl" lang="ar" className="text-lg text-slate-500 italic">
+            احجز استشارة لتطبيق نظام SDOS في بلدك
           </p>
         </div>
 
@@ -113,11 +120,11 @@ export const ContactPage: React.FC = () => {
             </div>
 
             <div className="mt-12 p-8 bg-gradient-to-r from-brand-900/20 to-indigo-900/20 border border-brand-500/20 rounded-2xl">
-              <h4 className="text-white font-bold mb-3 text-lg">Join the Team</h4>
+              <h4 className="text-white font-bold mb-3 text-lg">Government Partnerships</h4>
               <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                We are always looking for exceptional talent in React, Node, Python, and DevOps. If you are passionate about high-performance engineering, get in touch.
+                We partner with governments, development agencies, and international organizations to deploy SDOS. Contact us to discuss sovereign partnerships and technical cooperation agreements.
               </p>
-              <a href="mailto:info@infragatesolutions.com" className="text-brand-400 hover:text-brand-300 font-semibold text-sm">Send us your CV &rarr;</a>
+              <a href="mailto:info@infragatesolutions.com" className="text-brand-400 hover:text-brand-300 font-semibold text-sm">Explore Partnerships &rarr;</a>
             </div>
           </div>
 
@@ -157,13 +164,13 @@ export const ContactPage: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-2xl font-bold text-white">Project Enquiry</h3>
+                  <h3 className="text-2xl font-bold text-white">SDOS Demo Request</h3>
                   <div className="flex items-center gap-2 text-xs text-green-500 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">
                     <ShieldCheck size={12} />
                     <span>SSL Secured</span>
                   </div>
                 </div>
-                <p className="text-slate-500 text-sm mb-6">Tell us about your project infrastructure and requirements.</p>
+                <p className="text-slate-500 text-sm mb-6">Tell us about your government or ministry and digital transformation goals.</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -179,13 +186,13 @@ export const ContactPage: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm font-semibold text-slate-300 mb-2">Company Name</label>
+                    <label htmlFor="company" className="block text-sm font-semibold text-slate-300 mb-2">Organization / Ministry</label>
                     <input
                       type="text"
                       id="company"
                       required
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
-                      placeholder="Acme Corp Ltd"
+                      placeholder="Ministry of Digital Transformation"
                       value={formState.company}
                       onChange={e => setFormState({...formState, company: e.target.value})}
                     />
@@ -220,7 +227,7 @@ export const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                   <label htmlFor="service" className="block text-sm font-semibold text-slate-300 mb-2">Service Interest</label>
+                   <label htmlFor="service" className="block text-sm font-semibold text-slate-300 mb-2">Interest Area</label>
                    <div className="relative">
                      <select
                         id="service"
@@ -228,32 +235,32 @@ export const ContactPage: React.FC = () => {
                         onChange={e => setFormState({...formState, serviceInterest: e.target.value})}
                         className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer"
                      >
-                       <option>Government Digital Systems (GDS)</option>
-                       <option>Enterprise Architecture</option>
-                       <option>AI & Smart Applications</option>
-                       <option>IoT & Smart Cities</option>
-                       <option>Cybersecurity Audit</option>
-                       <option>FinTech Infrastructure</option>
+                       <option>SDOS Pilot Program</option>
+                       <option>Full National Deployment</option>
+                       <option>Single Ministry Implementation</option>
+                       <option>Technical Consultation</option>
+                       <option>Partnership Discussion</option>
+                       <option>Investment Opportunity</option>
                      </select>
                      <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500 pointer-events-none w-5 h-5" />
                    </div>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">Project Details</label>
+                  <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">Your Requirements</label>
                   <textarea
                     id="message"
                     required
                     rows={4}
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none placeholder:text-slate-600"
-                    placeholder="Please describe your requirements, timeline, and technical constraints..."
+                    placeholder="Describe your digital transformation goals, current challenges, timeline expectations..."
                     value={formState.message}
                     onChange={e => setFormState({...formState, message: e.target.value})}
                   ></textarea>
                 </div>
 
                 <Button type="submit" size="lg" className="w-full py-4 text-lg shadow-xl shadow-brand-500/20">
-                  Submit Enquiry
+                  Request Demo
                 </Button>
                 
                 <p className="text-xs text-slate-600 text-center mt-4">
