@@ -74,7 +74,7 @@ export const ContactPage: React.FC = () => {
           <p className="text-xl text-slate-400 mb-4">
             Schedule a pilot program consultation for your nation or ministry
           </p>
-          <p dir="rtl" className="text-lg text-slate-500 italic">
+          <p dir="rtl" lang="ar" className="text-lg text-slate-500 italic">
             احجز استشارة لتطبيق نظام SDOS في بلدك
           </p>
         </div>

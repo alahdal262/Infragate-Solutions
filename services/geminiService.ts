@@ -1,8 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Initialize using the specific object format required by version 1.0+
-// Use a default placeholder if API_KEY is not set to prevent initialization errors
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || 'placeholder-key' });
+// Initialize Google Generative AI only if API key is available
+// In production, the API key should be set via environment variables
+let ai: GoogleGenAI | null = null;
+
+if (process.env.API_KEY) {
+  ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+}
 
 const SYSTEM_INSTRUCTION = `
 You are the official AI Assistant for "SDOS - Sovereign Digital Operating System", a comprehensive government operating system.
@@ -43,8 +47,9 @@ INSTRUCTIONS:
 `;
 
 export const sendMessageToGemini = async (history: { role: string; parts: { text: string }[] }[], message: string): Promise<string> => {
-  if (!process.env.API_KEY) {
-    return "I am currently offline (API Key missing). Please contact the administration.";
+  // Return friendly error message if API is not initialized
+  if (!ai || !process.env.API_KEY) {
+    return "The AI assistant is currently offline. Please contact us directly via the form or email for assistance.";
   }
 
   try {
@@ -61,6 +66,6 @@ export const sendMessageToGemini = async (history: { role: string; parts: { text
     return result.text || "I apologize, I could not process that request.";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "I am experiencing high traffic. Please try again in a moment.";
+    return "I am experiencing technical difficulties. Please contact us directly for assistance.";
   }
 };

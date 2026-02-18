@@ -40,7 +40,7 @@ export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
             From scattered paper bureaucracy to a smart, unified digital state aligned with the future of governance
           </p>
           
-          <p dir="rtl" className="mt-4 max-w-4xl mx-auto text-lg text-slate-400 mb-12 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-150 leading-relaxed font-light italic">
+          <p dir="rtl" lang="ar" className="mt-4 max-w-4xl mx-auto text-lg text-slate-400 mb-12 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-150 leading-relaxed font-light italic">
             "من بيروقراطية ورقية متناثرة.. إلى دولة رقمية ذكية، موحدة، ومتواكبة مع المستقبل الرقمي للحكومات"
           </p>
           
@@ -237,7 +237,7 @@ export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
                <p className="text-slate-300 text-xl mb-4 max-w-2xl mx-auto">
                  Join the digital governance revolution. One successful pilot in a single ministry can multiply your nation's efficiency tenfold.
                </p>
-               <p dir="rtl" className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto italic">
+               <p dir="rtl" lang="ar" className="text-slate-400 mb-8 max-w-2xl mx-auto text-lg">
                  نحن لا نصمم مجرد تطبيق، نحن نبني مستقبل الحوكمة الرشيدة
                </p>
                <div className="flex flex-col sm:flex-row gap-4 justify-center">

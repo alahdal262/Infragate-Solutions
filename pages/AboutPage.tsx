@@ -16,7 +16,7 @@ export const AboutPage: React.FC = () => {
           <p className="text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto mb-4">
             The Sovereign Digital Operating System (SDOS) is a comprehensive government operating system transforming nations from paper bureaucracy into intelligent digital states.
           </p>
-          <p dir="rtl" className="text-lg text-slate-500 max-w-2xl mx-auto italic">
+          <p dir="rtl" lang="ar" className="text-lg text-slate-500 max-w-2xl mx-auto italic">
             نظام تشغيل الدولة الرقمية السيادي - نحن لا نبني موقعاً، بل نبني بنية تحتية رقمية للدولة بأكملها
           </p>
         </div>
