@@ -1,45 +1,91 @@
 import React from 'react';
-import { Server, Database, Smartphone, ShieldCheck, Code, Settings, Cpu, Cloud, Lock, Zap, BarChart, Globe } from 'lucide-react';
+import { Server, Database, Smartphone, ShieldCheck, Code, Settings, Cpu, Cloud, Lock, Zap, BarChart, Globe, Users, Copy, Languages, FileCheck, Building2, DollarSign, TrendingUp, Award } from 'lucide-react';
 import { Button } from '../components/Button';
 import { PageView } from '../types';
 
 export const ServicesPage: React.FC<{ onNavigate: (p: PageView) => void }> = ({ onNavigate }) => {
   const services = [
     {
-      icon: <Server className="w-8 h-8 text-indigo-400" />,
-      title: "Government Digital Systems",
-      description: "We are experts in the UK Government Design System (GDS). We build citizen-facing services that are accessible (WCAG 2.1), secure, and capable of handling national-scale traffic. Our solutions include tax submission portals, license registries, and secure inter-departmental data exchanges via GOV.UK Notify and Pay integrations.",
-      tags: ["GovTech", "GDS Standards", "Accessibility", "GOV.UK Pay"]
+      icon: <Users className="w-8 h-8 text-indigo-400" />,
+      title: "Identity Core Service",
+      description: "The heart of SDOS. One unified national ID system managing citizens, residents, investors, and visitors. Enter data once in your lifetime—it becomes the master record for all government interactions. Built on WebAuthn with biometric authentication and zero-trust architecture.",
+      tags: ["WebAuthn", "Biometric", "Master Profile", "Zero Trust"]
     },
     {
-      icon: <Settings className="w-8 h-8 text-sky-400" />,
-      title: "Enterprise Architecture",
-      description: "We help large organizations move away from brittle legacy monoliths to resilient, scalable microservices. Utilizing Domain-Driven Design (DDD), we map complex business logic into independent, deployable units. We specialize in Event-Driven Architecture (EDA) using Apache Kafka to ensure real-time data consistency across distributed systems.",
-      tags: ["Microservices", "Kafka", "Kubernetes", "DDD"]
+      icon: <Copy className="w-8 h-8 text-sky-400" />,
+      title: "Service Cloning Engine",
+      description: "Revolutionary drag-and-drop service creation without writing code. Clone successful services from one ministry and deploy to others instantly. A/B test improvements safely, then scale nationally with a single click. Change service names, fees, workflows—without touching the core database.",
+      tags: ["No-Code", "Rapid Deploy", "A/B Testing", "Scalable"]
     },
     {
       icon: <Cpu className="w-8 h-8 text-purple-400" />,
-      title: "AI & Smart Applications",
-      description: "Infragate Solutions integrates state-of-the-art AI models (Gemini, GPT-4, Llama) into practical business applications. From intelligent chatbots for customer support to complex predictive maintenance models for manufacturing. We build 'Smart Systems' that learn, adapt, and optimize themselves over time.",
-      tags: ["Generative AI", "TensorFlow", "NLP", "Predictive Models"]
+      title: "AI Assistant (Digital Secretary)",
+      description: "Intelligent AI embedded in government dashboards. Drafts decisions, suggests organizational structures, prepares budget templates, and automates repetitive workflows. The AI assists but never decides—all actions require human approval and digital signature.",
+      tags: ["Generative AI", "Smart Workflows", "Decision Support", "Compliance"]
     },
     {
-      icon: <Smartphone className="w-8 h-8 text-emerald-400" />,
-      title: "IoT & Smart Cities",
-      description: "Connecting the physical and digital worlds. We develop the full stack for IoT solutions: from firmware on edge devices to high-throughput MQTT brokers and real-time visualization dashboards. We process telemetry data for Smart City initiatives, traffic management, and utility grid monitoring.",
-      tags: ["IoT", "MQTT", "Edge Computing", "Real-time Dashboards"]
+      icon: <Languages className="w-8 h-8 text-emerald-400" />,
+      title: "Multi-Language & Localization",
+      description: "Built-in internationalization (i18n) with support for RTL and LTR languages. Add Arabic, English, French, Chinese, Persian, or any language through simple translation files. Deploy the same system globally while adapting to local regulations and cultural needs.",
+      tags: ["i18n", "RTL Support", "Multi-Region", "Cultural Adapt"]
     },
     {
       icon: <ShieldCheck className="w-8 h-8 text-red-400" />,
-      title: "Cybersecurity & Compliance",
-      description: "Security is not a feature; it is our foundation. We implement DevSecOps pipelines where security testing (SAST/DAST) is automated. We ensure all deliverables meet ISO 27001 standards, GDPR data sovereignty requirements, and Cyber Essentials Plus benchmarks. We conduct rigorous penetration testing before handover.",
-      tags: ["DevSecOps", "GDPR", "ISO 27001", "Pen Testing"]
+      title: "Security & Digital Signatures",
+      description: "Unhackable security architecture based on modern banking standards. WebAuthn authentication, multi-signature approvals for sensitive actions, and a 'digital constitution' preventing system hijacking. Even if an admin account is compromised, critical operations require multiple approvals over a time delay.",
+      tags: ["Multi-Sig", "WebAuthn", "Audit Trail", "Cyber Resilient"]
     },
     {
-      icon: <Code className="w-8 h-8 text-amber-400" />,
-      title: "FinTech & Blockchain",
-      description: "Building the financial rails of tomorrow. We develop high-frequency trading interfaces, secure payment gateways compliant with PCI-DSS, and private blockchain ledgers for immutable audit trails. Our systems are designed for zero-latency transaction processing and absolute financial accuracy.",
-      tags: ["FinTech", "PCI-DSS", "Blockchain", "High Frequency"]
+      icon: <FileCheck className="w-8 h-8 text-amber-400" />,
+      title: "Smart Archiving (Hybrid Mode)",
+      description: "Seamlessly transition between digital and paper workflows. Cloud archiving with MinIO on sovereign servers. Print any digital document with an encrypted QR code—citizens without smartphones can use paper, and staff scan codes to continue digitally. Track physical files with IoT sensors.",
+      tags: ["Cloud Archive", "Hybrid Mode", "QR Codes", "IoT Tracking"]
+    },
+    {
+      icon: <BarChart className="w-8 h-8 text-blue-400" />,
+      title: "Real-Time Analytics & Dashboards",
+      description: "Every service has automatic analytics: request counts, average processing time, revenue generated, and employee performance metrics. Leadership dashboards show national-level KPIs, bottlenecks, and efficiency trends. Make data-driven decisions in real-time.",
+      tags: ["Analytics", "KPIs", "Leadership Dash", "Big Data"]
+    },
+    {
+      icon: <Building2 className="w-8 h-8 text-indigo-400" />,
+      title: "Ministry Plug & Play",
+      description: "Deploy a complete new ministry or government agency in days, not years. Pre-configured organizational hierarchy, role-based access control (RBAC), and workflow templates. Inheritance system ensures new entities automatically receive all core services and security policies.",
+      tags: ["Rapid Setup", "RBAC", "Workflows", "Templates"]
+    },
+    {
+      icon: <DollarSign className="w-8 h-8 text-green-400" />,
+      title: "Economic Impact Engine",
+      description: "Enable micro-businesses directly from citizen portals. Integrated payment gateways, tax automation, and licensing workflows. Citizens can launch businesses, pay taxes, and manage operations entirely digitally—stimulating local economies and creating jobs.",
+      tags: ["FinTech", "Micro-Business", "Tax Automation", "Job Creation"]
+    }
+  ];
+
+  const spinoffProducts = [
+    {
+      title: "Identity & eKYC Provider",
+      description: "Sell identity verification services to banks, telcos, and private apps via API (like Saudi Arabia's 'Nafath')",
+      icon: <Users className="w-5 h-5 text-brand-400" />
+    },
+    {
+      title: "Workflow & Approval SaaS",
+      description: "License the workflow engine to large enterprises for internal task management and compliance",
+      icon: <Settings className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Digital Signature Hub",
+      description: "Provide QR-code-backed contract signing for businesses, notarized by the government",
+      icon: <FileCheck className="w-5 h-5 text-sky-400" />
+    },
+    {
+      title: "Org Chart & RBAC System",
+      description: "Sell organizational management tools to private sector for employee permission systems",
+      icon: <Building2 className="w-5 h-5 text-purple-400" />
+    },
+    {
+      title: "Credit Score System",
+      description: "Enable credit scoring for loans, rentals, and business deals based on citizen transaction history",
+      icon: <TrendingUp className="w-5 h-5 text-emerald-400" />
     }
   ];
 
@@ -50,9 +96,12 @@ export const ServicesPage: React.FC<{ onNavigate: (p: PageView) => void }> = ({ 
       <div className="bg-slate-900 border-b border-slate-800 py-24 relative overflow-hidden">
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Our Capabilities</h1>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Infragate Solutions delivers end-to-end engineering excellence. From the kernel to the cloud, our expertise covers the full spectrum of modern digital infrastructure.
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">SDOS Features & Services</h1>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-4">
+              Complete government operating system—from citizen identity to AI-powered workflows to economic transformation
+            </p>
+            <p dir="rtl" className="text-lg text-slate-500 max-w-2xl mx-auto italic">
+              نظام تشغيل حكومي شامل يحوّل الدول إلى دول رقمية بالكامل
             </p>
          </div>
       </div>
@@ -83,64 +132,193 @@ export const ServicesPage: React.FC<{ onNavigate: (p: PageView) => void }> = ({ 
           ))}
         </div>
 
-        {/* Tech Stack Section */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Technology Stack</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="p-6 bg-slate-900 rounded-xl border border-slate-800 text-center">
-              <div className="flex justify-center mb-4"><Cloud className="text-brand-400 w-8 h-8" /></div>
-              <h4 className="text-white font-bold mb-2">Cloud & DevOps</h4>
-              <p className="text-sm text-slate-500">AWS, Azure, GCP, Terraform, Kubernetes, Docker</p>
-            </div>
-            <div className="p-6 bg-slate-900 rounded-xl border border-slate-800 text-center">
-              <div className="flex justify-center mb-4"><Code className="text-blue-400 w-8 h-8" /></div>
-              <h4 className="text-white font-bold mb-2">Backend</h4>
-              <p className="text-sm text-slate-500">Node.js, Python, Go, Rust, Java (Spring Boot)</p>
-            </div>
-            <div className="p-6 bg-slate-900 rounded-xl border border-slate-800 text-center">
-              <div className="flex justify-center mb-4"><Globe className="text-indigo-400 w-8 h-8" /></div>
-              <h4 className="text-white font-bold mb-2">Frontend</h4>
-              <p className="text-sm text-slate-500">React, Next.js, TypeScript, Tailwind CSS, WebGL</p>
-            </div>
-            <div className="p-6 bg-slate-900 rounded-xl border border-slate-800 text-center">
-              <div className="flex justify-center mb-4"><Database className="text-emerald-400 w-8 h-8" /></div>
-              <h4 className="text-white font-bold mb-2">Data & AI</h4>
-              <p className="text-sm text-slate-500">PostgreSQL, Redis, Kafka, TensorFlow, Gemini API</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Process Section */}
-        <div className="bg-brand-900/10 rounded-3xl p-10 md:p-16 border border-brand-500/20">
+        {/* Spin-off Products Section */}
+        <div className="mb-32">
           <div className="text-center mb-12">
-             <h2 className="text-3xl font-bold text-white mb-4">The Engineering Process</h2>
-             <p className="text-slate-400">Our ISO 9001 aligned methodology ensures consistent, high-quality delivery.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Spin-off Revenue Streams</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+              SDOS components can be sold independently as commercial products to banks, telcos, and enterprises
+            </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-slate-800 -z-10"></div>
-            
-            {[
-              { step: "01", title: "Discovery", desc: "Requirements gathering, regulatory analysis, and feasibility studies." },
-              { step: "02", title: "Architecture", desc: "System design, security modelling, and technology selection." },
-              { step: "03", title: "Development", desc: "Agile sprints, code reviews, and automated testing (CI/CD)." },
-              { step: "04", title: "Delivery", desc: "UAT, security auditing, and zero-downtime deployment." }
-            ].map((item, i) => (
-              <div key={item.step} className="relative bg-slate-950 p-6 rounded-xl border border-slate-800 text-center">
-                <div className="w-10 h-10 bg-brand-600 rounded-full text-white font-bold flex items-center justify-center mx-auto mb-4 border-4 border-slate-950 relative z-10 shadow-lg shadow-brand-600/20">
-                  {i + 1}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {spinoffProducts.map((product, idx) => (
+              <div key={idx} className="bg-slate-900 border border-slate-800 rounded-xl p-6 hover:bg-slate-800/80 transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-slate-950 rounded-lg border border-slate-700 flex-shrink-0">
+                    {product.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white mb-2">{product.title}</h4>
+                    <p className="text-slate-400 text-sm leading-relaxed">{product.description}</p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mt-20 text-center">
-            <h3 className="text-2xl text-white font-bold mb-6">Need a custom solution?</h3>
+        {/* Architecture Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Microservices Architecture</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-8 bg-slate-900 rounded-xl border border-slate-800 text-center">
+              <div className="flex justify-center mb-6 p-4 bg-slate-950 rounded-xl border border-slate-700 w-fit mx-auto">
+                <Users className="text-brand-400 w-10 h-10" />
+              </div>
+              <h4 className="text-white font-bold mb-3 text-xl">Identity Service</h4>
+              <p className="text-sm text-slate-400 leading-relaxed">Core of SDOS. Manages citizens, residents, investors, visitors with unified national ID</p>
+            </div>
+            <div className="p-8 bg-slate-900 rounded-xl border border-slate-800 text-center">
+              <div className="flex justify-center mb-6 p-4 bg-slate-950 rounded-xl border border-slate-700 w-fit mx-auto">
+                <Settings className="text-blue-400 w-10 h-10" />
+              </div>
+              <h4 className="text-white font-bold mb-3 text-xl">Service Engine</h4>
+              <p className="text-sm text-slate-400 leading-relaxed">Drag-and-drop service creation. No code required. Clone and scale instantly</p>
+            </div>
+            <div className="p-8 bg-slate-900 rounded-xl border border-slate-800 text-center">
+              <div className="flex justify-center mb-6 p-4 bg-slate-950 rounded-xl border border-slate-700 w-fit mx-auto">
+                <Cpu className="text-indigo-400 w-10 h-10" />
+              </div>
+              <h4 className="text-white font-bold mb-3 text-xl">AI Assistant</h4>
+              <p className="text-sm text-slate-400 leading-relaxed">Digital secretary in dashboards. Drafts decisions but requires human approval</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Beneficiaries Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">Who Benefits from SDOS?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-br from-brand-900/20 to-slate-900 border border-slate-800 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Users className="w-6 h-6 text-brand-400" />
+                <h3 className="text-xl font-bold text-white">Citizens & Residents</h3>
+              </div>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                One portal for all services. See your documents, applications, medical records, and assets. Never carry paper again. Launch micro-businesses from your dashboard.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-brand-300 rounded-full border border-slate-800">Unified Portal</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-brand-300 rounded-full border border-slate-800">Digital Wallet</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-brand-300 rounded-full border border-slate-800">Business Launcher</span>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-indigo-900/20 to-slate-900 border border-slate-800 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Building2 className="w-6 h-6 text-indigo-400" />
+                <h3 className="text-xl font-bold text-white">Investors & Businesses</h3>
+              </div>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                100% digital journey to establish companies, pay taxes, open bank accounts remotely. No physical presence required. Transparent timelines and automated approvals.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-indigo-300 rounded-full border border-slate-800">Remote Setup</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-indigo-300 rounded-full border border-slate-800">Auto Tax</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-indigo-300 rounded-full border border-slate-800">Banking API</span>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-900/20 to-slate-900 border border-slate-800 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="w-6 h-6 text-purple-400" />
+                <h3 className="text-xl font-bold text-white">Government Leadership</h3>
+              </div>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                Real-time dashboards showing performance of every ministry, revenue streams, bottlenecks, and citizen satisfaction. Make data-driven decisions instantly.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-purple-300 rounded-full border border-slate-800">Live KPIs</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-purple-300 rounded-full border border-slate-800">Big Data</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-purple-300 rounded-full border border-slate-800">Analytics</span>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-900/20 to-slate-900 border border-slate-800 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Users className="w-6 h-6 text-emerald-400" />
+                <h3 className="text-xl font-bold text-white">Government Employees</h3>
+              </div>
+              <p className="text-slate-400 leading-relaxed mb-4">
+                Simplified work interface with AI assistance. Process requests faster, track workload, and get performance metrics. AI drafts responses, you approve.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-emerald-300 rounded-full border border-slate-800">AI Helper</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-emerald-300 rounded-full border border-slate-800">Fast Processing</span>
+                <span className="text-xs px-3 py-1.5 bg-slate-950 text-emerald-300 rounded-full border border-slate-800">Metrics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Economic Impact */}
+        <div className="bg-brand-900/10 rounded-3xl p-10 md:p-16 border border-brand-500/20 mb-20">
+          <div className="text-center mb-12">
+             <h2 className="text-3xl font-bold text-white mb-4">Economic Transformation</h2>
+             <p className="text-slate-400 max-w-2xl mx-auto">SDOS doesn't just digitize—it multiplies government revenue and empowers citizens economically</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-slate-950/50 rounded-xl p-6 border border-slate-800">
+              <div className="flex items-center gap-3 mb-4">
+                <DollarSign className="w-6 h-6 text-emerald-400" />
+                <h3 className="text-xl font-bold text-white">For Government</h3>
+              </div>
+              <ul className="space-y-3 text-slate-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 mt-1">•</span>
+                  <span>Eliminate tax evasion and lost fees from paper processes</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 mt-1">•</span>
+                  <span>Reduce operational costs by 80% (printing, buildings, queues)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 mt-1">•</span>
+                  <span>Attract foreign direct investment (FDI) with transparency</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-400 mt-1">•</span>
+                  <span>Real-time revenue tracking and prediction</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-950/50 rounded-xl p-6 border border-slate-800">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="w-6 h-6 text-brand-400" />
+                <h3 className="text-xl font-bold text-white">For Citizens</h3>
+              </div>
+              <ul className="space-y-3 text-slate-400">
+                <li className="flex items-start gap-2">
+                  <span className="text-brand-400 mt-1">•</span>
+                  <span>Launch micro-businesses from portal with payment integration</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-brand-400 mt-1">•</span>
+                  <span>Access credit scoring for loans and rentals</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-brand-400 mt-1">•</span>
+                  <span>Stimulate local economy and create new jobs</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-brand-400 mt-1">•</span>
+                  <span>Transparent business operations and digital contracts</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div className="mt-20 text-center bg-gradient-to-br from-brand-900/20 to-indigo-900/20 border border-brand-500/30 rounded-3xl p-12">
+            <h3 className="text-3xl text-white font-bold mb-4">Ready to Transform Your Nation?</h3>
+            <p className="text-slate-400 mb-8 max-w-2xl mx-auto text-lg">
+              One pilot project can prove the concept. Contact us to discuss deployment in your country.
+            </p>
             <Button size="lg" onClick={() => onNavigate(PageView.CONTACT)}>
-              Book a Technical Consultation
+              Schedule a Consultation
             </Button>
         </div>
       </div>
