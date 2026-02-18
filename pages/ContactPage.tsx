@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send, ChevronDown, ChevronUp, Loader2, CheckCircle, Database, Server, ShieldCheck, Smartphone } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, ChevronDown, ChevronUp, Loader2, CheckCircle, Database, Server, ShieldCheck, Smartphone, AlertTriangle } from 'lucide-react';
 import { Button } from '../components/Button';
+import { SEO } from '../components/SEO';
 import { ContactFormData } from '../types';
 import { submitContactForm } from '../services/contactService';
 
@@ -14,14 +15,16 @@ export const ContactPage: React.FC = () => {
     message: '' 
   });
   
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [currentStep, setCurrentStep] = useState<string>('');
   const [referenceId, setReferenceId] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage('');
     
     try {
       const result = await submitContactForm(formState, (step) => {
@@ -31,10 +34,14 @@ export const ContactPage: React.FC = () => {
       if (result.success && result.id) {
         setReferenceId(result.id);
         setStatus('success');
+      } else if (!result.success && result.error) {
+        setErrorMessage(result.error);
+        setStatus('error');
       }
     } catch (error) {
       console.error("Submission failed", error);
-      setStatus('idle');
+      setErrorMessage('An unexpected error occurred. Please try again.');
+      setStatus('error');
     }
   };
 
@@ -58,7 +65,14 @@ export const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-slate-950 min-h-screen py-20 relative overflow-hidden">
+    <>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Infragate Solutions. Discuss your software engineering requirements with our London-based team. We specialize in enterprise architecture, cloud infrastructure, and government systems."
+        canonical="/contact-us"
+        keywords="contact infragate solutions, UK software engineering, enterprise consultation, cloud infrastructure support"
+      />
+      <div className="bg-slate-950 min-h-screen py-20 relative overflow-hidden">
       {/* Background blobs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -140,6 +154,22 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <button onClick={() => setStatus('idle')} className="text-brand-400 hover:text-brand-300 font-medium border-b border-brand-400/20 hover:border-brand-400 transition-all">Submit another enquiry</button>
               </div>
+            ) : status === 'error' ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-20 animate-in fade-in zoom-in duration-300">
+                <div className="w-20 h-20 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mb-6 border border-red-500/50 shadow-lg shadow-red-500/20">
+                  <AlertTriangle className="w-10 h-10" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Submission Failed</h3>
+                <p className="text-slate-400 max-w-md mx-auto mb-8">
+                  {errorMessage || 'An error occurred while processing your request. Please try again.'}
+                </p>
+                <button 
+                  onClick={() => setStatus('idle')} 
+                  className="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+                >
+                  Try Again
+                </button>
+              </div>
             ) : status === 'submitting' ? (
                <div className="h-full flex flex-col items-center justify-center text-center py-20">
                  <div className="relative mb-8">
@@ -155,11 +185,11 @@ export const ContactPage: React.FC = () => {
                  </div>
                </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-2xl font-bold text-white">Project Enquiry</h3>
-                  <div className="flex items-center gap-2 text-xs text-green-500 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">
-                    <ShieldCheck size={12} />
+                  <div className="flex items-center gap-2 text-xs text-green-500 bg-green-500/10 px-2 py-1 rounded border border-green-500/20" role="status">
+                    <ShieldCheck size={12} aria-hidden="true" />
                     <span>SSL Secured</span>
                   </div>
                 </div>
@@ -171,7 +201,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="Jane Smith"
                       value={formState.name}
@@ -183,7 +215,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="text"
                       id="company"
+                      name="company"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="Acme Corp Ltd"
                       value={formState.company}
@@ -198,7 +232,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="jane@company.com"
                       value={formState.email}
@@ -210,7 +246,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="tel"
                       id="phone"
+                      name="phone"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="+44 7000 000000"
                       value={formState.phone}
@@ -224,6 +262,8 @@ export const ContactPage: React.FC = () => {
                    <div className="relative">
                      <select
                         id="service"
+                        name="service"
+                        aria-label="Select service of interest"
                         value={formState.serviceInterest}
                         onChange={e => setFormState({...formState, serviceInterest: e.target.value})}
                         className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer"
@@ -235,7 +275,7 @@ export const ContactPage: React.FC = () => {
                        <option>Cybersecurity Audit</option>
                        <option>FinTech Infrastructure</option>
                      </select>
-                     <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500 pointer-events-none w-5 h-5" />
+                     <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500 pointer-events-none w-5 h-5" aria-hidden="true" />
                    </div>
                 </div>
 
@@ -243,7 +283,9 @@ export const ContactPage: React.FC = () => {
                   <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">Project Details</label>
                   <textarea
                     id="message"
+                    name="message"
                     required
+                    aria-required="true"
                     rows={4}
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none placeholder:text-slate-600"
                     placeholder="Please describe your requirements, timeline, and technical constraints..."
@@ -252,7 +294,7 @@ export const ContactPage: React.FC = () => {
                   ></textarea>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full py-4 text-lg shadow-xl shadow-brand-500/20">
+                <Button type="submit" size="lg" className="w-full py-4 text-lg shadow-xl shadow-brand-500/20" aria-label="Submit contact form">
                   Submit Enquiry
                 </Button>
                 
@@ -289,5 +331,6 @@ export const ContactPage: React.FC = () => {
 
       </div>
     </div>
+    </>
   );
 };

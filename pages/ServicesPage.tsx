@@ -1,6 +1,7 @@
 import React from 'react';
 import { Server, Database, Smartphone, ShieldCheck, Code, Settings, Cpu, Cloud, Lock, Zap, BarChart, Globe } from 'lucide-react';
 import { Button } from '../components/Button';
+import { SEO } from '../components/SEO';
 import { PageView } from '../types';
 
 export const ServicesPage: React.FC<{ onNavigate: (p: PageView) => void }> = ({ onNavigate }) => {
@@ -44,7 +45,14 @@ export const ServicesPage: React.FC<{ onNavigate: (p: PageView) => void }> = ({ 
   ];
 
   return (
-    <div className="bg-slate-950 min-h-screen">
+    <>
+      <SEO
+        title="Our Services"
+        description="Expert software engineering services: Government digital systems, enterprise architecture, cloud infrastructure, mobile applications, and API development. UK-based team specializing in scalable, secure solutions."
+        canonical="/services"
+        keywords="software engineering services, government digital systems, enterprise architecture, cloud infrastructure, DevOps, API development"
+      />
+      <div className="bg-slate-950 min-h-screen">
       
       {/* Header */}
       <div className="bg-slate-900 border-b border-slate-800 py-24 relative overflow-hidden">
@@ -145,5 +153,6 @@ export const ServicesPage: React.FC<{ onNavigate: (p: PageView) => void }> = ({ 
         </div>
       </div>
     </div>
+    </>
   );
 };

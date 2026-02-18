@@ -1,9 +1,17 @@
 import React from 'react';
 import { Building2, FileCheck, Users, Globe2, Award, Scale, Briefcase } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="bg-slate-950 min-h-screen py-20">
+    <>
+      <SEO
+        title="About Us"
+        description="Infragate Solutions - UK Registered Company No: 14805395. British software engineering firm building critical digital infrastructure since 2023. London-based team of expert engineers."
+        canonical="/about-us"
+        keywords="about infragate solutions, UK software company, London engineers, company 14805395"
+      />
+      <div className="bg-slate-950 min-h-screen py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -113,5 +121,6 @@ export const AboutPage: React.FC = () => {
 
       </div>
     </div>
+    </>
   );
 };

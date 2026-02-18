@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { Layout } from './components/Layout';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { ChatWidget } from './components/ChatWidget';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { PageView } from './types';
 
 function App() {
@@ -53,13 +55,17 @@ function App() {
   };
 
   return (
-    <Layout currentPage={currentPage} onNavigate={navigate}>
-      {currentPage === PageView.HOME && <HomePage onNavigate={navigate} />}
-      {currentPage === PageView.SERVICES && <ServicesPage onNavigate={navigate} />}
-      {currentPage === PageView.ABOUT && <AboutPage />}
-      {currentPage === PageView.CONTACT && <ContactPage />}
-      <ChatWidget />
-    </Layout>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <Layout currentPage={currentPage} onNavigate={navigate}>
+          {currentPage === PageView.HOME && <HomePage onNavigate={navigate} />}
+          {currentPage === PageView.SERVICES && <ServicesPage onNavigate={navigate} />}
+          {currentPage === PageView.ABOUT && <AboutPage />}
+          {currentPage === PageView.CONTACT && <ContactPage />}
+          <ChatWidget />
+        </Layout>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 
