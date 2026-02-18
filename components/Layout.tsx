@@ -22,19 +22,36 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-200 font-sans selection:bg-brand-500/30 relative">
+      {/* Skip to main content link for keyboard navigation */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-brand-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg"
+      >
+        Skip to main content
+      </a>
+      
       <DigitalBackground />
       
       {/* Scanline Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-[1] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,6px_100%]"></div>
+      <div className="fixed inset-0 pointer-events-none z-[1] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,6px_100%]" aria-hidden="true"></div>
       
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50 supports-[backdrop-filter]:bg-slate-950/60">
+      <nav className="fixed top-0 w-full z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50 supports-[backdrop-filter]:bg-slate-950/60" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-24">
             {/* Logo */}
             <div 
               className="flex items-center cursor-pointer group"
               onClick={() => onNavigate(PageView.HOME)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onNavigate(PageView.HOME);
+                }
+              }}
+              aria-label="Navigate to home page"
             >
               <div className="relative mr-4">
                  <Logo className="w-12 h-12 drop-shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]" />
@@ -51,6 +68,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
                 <button
                   key={item.value}
                   onClick={() => onNavigate(item.value)}
+                  aria-label={`Navigate to ${item.label}`}
+                  aria-current={currentPage === item.value ? 'page' : undefined}
                   className={`text-sm font-medium transition-all duration-200 relative py-2 group ${
                     currentPage === item.value 
                       ? 'text-brand-400' 
@@ -63,6 +82,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               ))}
               <button 
                  onClick={() => onNavigate(PageView.CONTACT)}
+                 aria-label="Access client portal"
                  className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-6 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md hover:border-slate-600 flex items-center gap-2"
               >
                 <Lock className="w-3 h-3 text-brand-400" />
@@ -72,7 +92,12 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-slate-300 hover:text-white p-2">
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                className="text-slate-300 hover:text-white p-2"
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+              >
                 {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
@@ -90,6 +115,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
                     onNavigate(item.value);
                     setMobileMenuOpen(false);
                   }}
+                  aria-label={`Navigate to ${item.label}`}
+                  aria-current={currentPage === item.value ? 'page' : undefined}
                   className={`block w-full text-left px-4 py-4 rounded-xl text-base font-medium transition-colors ${
                      currentPage === item.value 
                       ? 'bg-brand-900/20 text-brand-400 border border-brand-900/50' 
@@ -100,7 +127,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
                 </button>
               ))}
               <div className="pt-4 mt-4 border-t border-slate-800">
-                 <button className="w-full flex items-center justify-center gap-2 bg-slate-800 py-3 rounded-xl text-slate-200 font-medium">
+                 <button 
+                   className="w-full flex items-center justify-center gap-2 bg-slate-800 py-3 rounded-xl text-slate-200 font-medium"
+                   aria-label="Access client portal"
+                 >
                    <Lock className="w-4 h-4" /> Client Portal Access
                  </button>
               </div>
@@ -110,14 +140,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
       </nav>
 
       {/* Main Content - adjusted z-index to sit above background */}
-      <main className="flex-grow pt-24 relative z-10">
+      <main id="main-content" className="flex-grow pt-24 relative z-10" role="main">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950/90 backdrop-blur-sm border-t border-slate-900 relative overflow-hidden z-10">
+      <footer className="bg-slate-950/90 backdrop-blur-sm border-t border-slate-900 relative overflow-hidden z-10" role="contentinfo">
         {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-900 to-transparent"></div>
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-900 to-transparent" aria-hidden="true"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">

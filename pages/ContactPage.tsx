@@ -185,11 +185,11 @@ export const ContactPage: React.FC = () => {
                  </div>
                </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-2xl font-bold text-white">Project Enquiry</h3>
-                  <div className="flex items-center gap-2 text-xs text-green-500 bg-green-500/10 px-2 py-1 rounded border border-green-500/20">
-                    <ShieldCheck size={12} />
+                  <div className="flex items-center gap-2 text-xs text-green-500 bg-green-500/10 px-2 py-1 rounded border border-green-500/20" role="status">
+                    <ShieldCheck size={12} aria-hidden="true" />
                     <span>SSL Secured</span>
                   </div>
                 </div>
@@ -201,7 +201,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="Jane Smith"
                       value={formState.name}
@@ -213,7 +215,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="text"
                       id="company"
+                      name="company"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="Acme Corp Ltd"
                       value={formState.company}
@@ -228,7 +232,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="jane@company.com"
                       value={formState.email}
@@ -240,7 +246,9 @@ export const ContactPage: React.FC = () => {
                     <input
                       type="tel"
                       id="phone"
+                      name="phone"
                       required
+                      aria-required="true"
                       className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all placeholder:text-slate-600"
                       placeholder="+44 7000 000000"
                       value={formState.phone}
@@ -254,6 +262,8 @@ export const ContactPage: React.FC = () => {
                    <div className="relative">
                      <select
                         id="service"
+                        name="service"
+                        aria-label="Select service of interest"
                         value={formState.serviceInterest}
                         onChange={e => setFormState({...formState, serviceInterest: e.target.value})}
                         className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer"
@@ -265,7 +275,7 @@ export const ContactPage: React.FC = () => {
                        <option>Cybersecurity Audit</option>
                        <option>FinTech Infrastructure</option>
                      </select>
-                     <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500 pointer-events-none w-5 h-5" />
+                     <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500 pointer-events-none w-5 h-5" aria-hidden="true" />
                    </div>
                 </div>
 
@@ -273,7 +283,9 @@ export const ContactPage: React.FC = () => {
                   <label htmlFor="message" className="block text-sm font-semibold text-slate-300 mb-2">Project Details</label>
                   <textarea
                     id="message"
+                    name="message"
                     required
+                    aria-required="true"
                     rows={4}
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none placeholder:text-slate-600"
                     placeholder="Please describe your requirements, timeline, and technical constraints..."
@@ -282,7 +294,7 @@ export const ContactPage: React.FC = () => {
                   ></textarea>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full py-4 text-lg shadow-xl shadow-brand-500/20">
+                <Button type="submit" size="lg" className="w-full py-4 text-lg shadow-xl shadow-brand-500/20" aria-label="Submit contact form">
                   Submit Enquiry
                 </Button>
                 
