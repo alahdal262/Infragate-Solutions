@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send, ChevronDown, ChevronUp, Loader2, CheckCircle, Database, Server, ShieldCheck, Smartphone } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, ChevronDown, ChevronUp, Loader2, CheckCircle, Database, Server, ShieldCheck, Smartphone, AlertTriangle } from 'lucide-react';
 import { Button } from '../components/Button';
+import { SEO } from '../components/SEO';
 import { ContactFormData } from '../types';
 import { submitContactForm } from '../services/contactService';
 
@@ -14,14 +15,16 @@ export const ContactPage: React.FC = () => {
     message: '' 
   });
   
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [currentStep, setCurrentStep] = useState<string>('');
   const [referenceId, setReferenceId] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage('');
     
     try {
       const result = await submitContactForm(formState, (step) => {
@@ -31,10 +34,14 @@ export const ContactPage: React.FC = () => {
       if (result.success && result.id) {
         setReferenceId(result.id);
         setStatus('success');
+      } else if (!result.success && result.error) {
+        setErrorMessage(result.error);
+        setStatus('error');
       }
     } catch (error) {
       console.error("Submission failed", error);
-      setStatus('idle');
+      setErrorMessage('An unexpected error occurred. Please try again.');
+      setStatus('error');
     }
   };
 
@@ -58,7 +65,14 @@ export const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-slate-950 min-h-screen py-20 relative overflow-hidden">
+    <>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Infragate Solutions. Discuss your software engineering requirements with our London-based team. We specialize in enterprise architecture, cloud infrastructure, and government systems."
+        canonical="/contact-us"
+        keywords="contact infragate solutions, UK software engineering, enterprise consultation, cloud infrastructure support"
+      />
+      <div className="bg-slate-950 min-h-screen py-20 relative overflow-hidden">
       {/* Background blobs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -139,6 +153,22 @@ export const ContactPage: React.FC = () => {
                    <div className="flex items-center gap-2"><Smartphone size={12} className="text-purple-500"/> SMS Alert sent to +44 7733369839</div>
                 </div>
                 <button onClick={() => setStatus('idle')} className="text-brand-400 hover:text-brand-300 font-medium border-b border-brand-400/20 hover:border-brand-400 transition-all">Submit another enquiry</button>
+              </div>
+            ) : status === 'error' ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-20 animate-in fade-in zoom-in duration-300">
+                <div className="w-20 h-20 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mb-6 border border-red-500/50 shadow-lg shadow-red-500/20">
+                  <AlertTriangle className="w-10 h-10" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Submission Failed</h3>
+                <p className="text-slate-400 max-w-md mx-auto mb-8">
+                  {errorMessage || 'An error occurred while processing your request. Please try again.'}
+                </p>
+                <button 
+                  onClick={() => setStatus('idle')} 
+                  className="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+                >
+                  Try Again
+                </button>
               </div>
             ) : status === 'submitting' ? (
                <div className="h-full flex flex-col items-center justify-center text-center py-20">
@@ -289,5 +319,6 @@ export const ContactPage: React.FC = () => {
 
       </div>
     </div>
+    </>
   );
 };

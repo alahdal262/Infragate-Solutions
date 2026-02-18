@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '../components/Button';
+import { SEO } from '../components/SEO';
 import { PageView } from '../types';
 import { Shield, Server, Cpu, Layers, ArrowRight, CheckCircle, Lock, Globe, Database, Activity, Code2, Scale } from 'lucide-react';
 import { Logo } from '../components/Logo';
@@ -10,7 +11,14 @@ interface HomeProps {
 
 export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
   return (
-    <div className="relative overflow-hidden">
+    <>
+      <SEO
+        title="Premier UK Software Engineering"
+        description="Infragate Solutions - UK Registered Company No: 14805395. Building government systems, complex enterprise architectures, and smart applications with cutting-edge technology."
+        canonical="/"
+        keywords="UK software engineering, enterprise architecture, cloud infrastructure, government systems, DevOps, React, Node.js"
+      />
+      <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative pt-24 pb-40 flex items-center justify-center overflow-hidden min-h-[90vh]">
         {/* Abstract Background */}
@@ -242,5 +250,6 @@ export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
         </div>
       </section>
     </div>
+    </>
   );
 };
