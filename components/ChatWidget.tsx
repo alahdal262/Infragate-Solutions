@@ -6,7 +6,7 @@ import { ChatMessage } from '../types';
 export const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: "Welcome to Infragate Solutions. I am your AI Consultant. How can I assist you with our enterprise services today?", timestamp: new Date() }
+    { role: 'model', text: "Welcome to SDOS - Sovereign Digital Operating System. I'm your AI guide. How can I help you understand our government transformation platform?", timestamp: new Date() }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +58,7 @@ export const ChatWidget: React.FC = () => {
                 <Bot className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold text-white text-sm">Infragate AI</h3>
+                <h3 className="font-semibold text-white text-sm">SDOS AI Assistant</h3>
                 <span className="text-xs text-brand-200 flex items-center gap-1">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                   Online
@@ -103,7 +103,7 @@ export const ChatWidget: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Ask about our services..."
+                placeholder="Ask about SDOS features..."
                 className="flex-1 bg-slate-800 text-white placeholder-slate-400 border border-slate-700 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
               />
               <button 
