@@ -1,9 +1,8 @@
 import { ContactFormData } from '../types';
 import { createClient } from '@supabase/supabase-js';
 
-// Live Supabase Credentials
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://sntrpqnfdngvxrwhkeod.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHJwcW5mZG5ndnhyd2hrZW9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ5NDI5OTMsImV4cCI6MjA4MDUxODk5M30.xo3648kVR05Ii5mcqzwdzMLU9xcyNmhZmj8sks9zPCo';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // Initialize Supabase Client
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
